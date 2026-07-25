@@ -3,17 +3,18 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-function PageContent({ story, page }) {
+function PageContent({ title, subtitle, cover, pages, page }) {
   if (page === 0) {
     return (
       <>
-        {story.cover && (
+        {cover && (
           <div className="relative aspect-[3/2] w-full max-w-sm overflow-hidden rounded-2xl shadow-lg ring-1 ring-blush">
             <Image
-              src={story.cover}
-              alt={story.title}
+              src={cover}
+              alt={title}
               fill
               sizes="(max-width: 640px) 90vw, 400px"
               className="object-cover"
@@ -22,18 +23,16 @@ function PageContent({ story, page }) {
           </div>
         )}
         <h1 className="font-display text-2xl italic text-mauve sm:text-3xl">
-          {story.title}
+          {title}
         </h1>
-        {story.subtitle && (
-          <p className="text-sm text-plum/60">{story.subtitle}</p>
-        )}
+        {subtitle && <p className="text-sm text-plum/60">{subtitle}</p>}
       </>
     );
   }
 
   return (
     <div className="space-y-4">
-      {story.pages[page - 1].map((line, i) => (
+      {pages[page - 1].map((line, i) => (
         <p
           key={i}
           className="font-display text-lg leading-relaxed text-plum sm:text-xl"
@@ -45,18 +44,34 @@ function PageContent({ story, page }) {
   );
 }
 
-export default function BookReader({ story }) {
-  // página 0 = capa da história, depois 1..N são as páginas de texto
+export default function BookReader({
+  title,
+  subtitle,
+  cover,
+  pages,
+  backHref = "/",
+  backLabel = "← voltar",
+  prevBoundary, // { href, label } - navegação para o capítulo/história anterior
+  nextBoundary, // { href, label } - navegação para o próximo capítulo/história
+}) {
+  const router = useRouter();
+  // página 0 = capa/título, depois 1..N são as páginas de texto
   const [page, setPage] = useState(0);
-  // a página que está no processo de "virar" (a que está saindo de cena)
   const [flip, setFlip] = useState(null); // { from, direction } | null
   const busyRef = useRef(false);
-  const totalPages = story.pages.length + 1;
+  const totalPages = pages.length + 1;
 
   function goTo(next) {
-    if (busyRef.current || next < 0 || next >= totalPages || next === page) {
+    if (busyRef.current) return;
+    if (next < 0) {
+      if (prevBoundary) router.push(prevBoundary.href);
       return;
     }
+    if (next >= totalPages) {
+      if (nextBoundary) router.push(nextBoundary.href);
+      return;
+    }
+    if (next === page) return;
     busyRef.current = true;
     setFlip({ from: page, direction: next > page ? 1 : -1 });
     setPage(next);
@@ -67,25 +82,32 @@ export default function BookReader({ story }) {
     else if (info.offset.x > 60) goTo(page - 1);
   }
 
+  const atStart = page === 0;
+  const atEnd = page === totalPages - 1;
+
   return (
     <div className="mx-auto flex min-h-screen max-w-2xl flex-col px-5 py-8">
       <Link
-        href="/"
+        href={backHref}
         className="mb-4 w-fit text-sm text-mauve underline-offset-4 hover:underline"
       >
-        ← voltar para a árvore
+        {backLabel}
       </Link>
 
       <div
         className="relative flex-1 overflow-hidden rounded-3xl bg-white/70 p-1 shadow-xl shadow-rose/10 ring-1 ring-blush"
         style={{ perspective: 1600 }}
       >
-        {/* página de baixo: sempre mostra o conteúdo atual, já atualizado */}
         <div className="flex h-full min-h-[60vh] flex-col items-center justify-center gap-5 rounded-[1.4rem] bg-cream p-8 text-center">
-          <PageContent story={story} page={page} />
+          <PageContent
+            title={title}
+            subtitle={subtitle}
+            cover={cover}
+            pages={pages}
+            page={page}
+          />
         </div>
 
-        {/* a "folha" que gira por cima, revelando a página de baixo */}
         <AnimatePresence>
           {flip && (
             <motion.div
@@ -104,8 +126,13 @@ export default function BookReader({ story }) {
               }}
               className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 rounded-[1.4rem] bg-cream p-8 text-center shadow-2xl"
             >
-              <PageContent story={story} page={flip.from} />
-              {/* sombra da dobra, some conforme a página gira */}
+              <PageContent
+                title={title}
+                subtitle={subtitle}
+                cover={cover}
+                pages={pages}
+                page={flip.from}
+              />
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 0.35, 0] }}
@@ -122,7 +149,6 @@ export default function BookReader({ story }) {
           )}
         </AnimatePresence>
 
-        {/* área para arrastar/deslizar no celular */}
         <motion.div
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -133,23 +159,23 @@ export default function BookReader({ story }) {
         />
       </div>
 
-      <div className="mt-5 flex items-center justify-between">
+      <div className="mt-5 flex items-center justify-between gap-2">
         <button
           onClick={() => goTo(page - 1)}
-          disabled={page === 0}
+          disabled={atStart && !prevBoundary}
           className="rounded-full bg-rose px-5 py-2 text-sm font-semibold text-white shadow-md shadow-rose/30 transition disabled:cursor-not-allowed disabled:opacity-30"
         >
-          ← anterior
+          {atStart && prevBoundary ? prevBoundary.label : "← anterior"}
         </button>
-        <span className="text-xs text-plum/50">
+        <span className="shrink-0 text-xs text-plum/50">
           {page + 1} / {totalPages}
         </span>
         <button
           onClick={() => goTo(page + 1)}
-          disabled={page === totalPages - 1}
+          disabled={atEnd && !nextBoundary}
           className="rounded-full bg-rose px-5 py-2 text-sm font-semibold text-white shadow-md shadow-rose/30 transition disabled:cursor-not-allowed disabled:opacity-30"
         >
-          próxima →
+          {atEnd && nextBoundary ? nextBoundary.label : "próxima →"}
         </button>
       </div>
     </div>

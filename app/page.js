@@ -1,5 +1,6 @@
 import { getAllStories } from "@/lib/stories";
 import StarTree from "@/components/StarTree";
+import Link from "next/link";
 
 export default async function HomePage() {
   const stories = await getAllStories();
@@ -27,6 +28,13 @@ export default async function HomePage() {
           <code>content/stories</code>.
         </p>
       )}
+
+      <Link
+        href="/livros"
+        className="mt-12 text-sm text-mauve underline-offset-4 hover:underline"
+      >
+        📚 ver a estante de livros
+      </Link>
     </main>
   );
 }

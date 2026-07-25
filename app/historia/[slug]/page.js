@@ -11,5 +11,14 @@ export default async function StoryPage({ params }) {
   const story = await getStoryBySlug(params.slug);
   if (!story) notFound();
 
-  return <BookReader story={story} />;
+  return (
+    <BookReader
+      title={story.title}
+      subtitle={story.subtitle}
+      cover={story.cover}
+      pages={story.pages}
+      backHref="/"
+      backLabel="← voltar para a árvore"
+    />
+  );
 }
