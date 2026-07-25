@@ -64,17 +64,26 @@ export default function BookReader({
   function goTo(next) {
     if (busyRef.current) return;
     if (next < 0) {
-      if (prevBoundary) router.push(prevBoundary.href);
+      if (prevBoundary) {
+        if (typeof window !== "undefined") window.scrollTo({ top: 0 });
+        router.push(prevBoundary.href);
+      }
       return;
     }
     if (next >= totalPages) {
-      if (nextBoundary) router.push(nextBoundary.href);
+      if (nextBoundary) {
+        if (typeof window !== "undefined") window.scrollTo({ top: 0 });
+        router.push(nextBoundary.href);
+      }
       return;
     }
     if (next === page) return;
     busyRef.current = true;
     setFlip({ from: page, direction: next > page ? 1 : -1 });
     setPage(next);
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }
 
   function handleDragEnd(_, info) {
