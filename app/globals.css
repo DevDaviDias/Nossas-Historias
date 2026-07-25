@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(247, 206, 122, 0.18), transparent 40%),
+    radial-gradient(circle at 85% 10%, rgba(245, 143, 178, 0.18), transparent 45%),
+    linear-gradient(180deg, #fff6f8 0%, #ffeef3 100%);
+}
+
+/* respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

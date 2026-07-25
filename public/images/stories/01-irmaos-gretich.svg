@@ -1,0 +1,32 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#FFEAF1"/>
+      <stop offset="100%" stop-color="#FFD3E0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="110" cy="110" r="108" fill="url(#sky)"/>
+
+  <!-- galhos -->
+  <path d="M110 190 L110 120 M110 130 L80 95 M110 130 L140 95 M95 105 L70 75 M125 105 L150 75"
+        stroke="#B5708C" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+  <!-- estrelas / luzes -->
+  <g fill="#F7CE7A">
+    <circle cx="80" cy="95" r="4"/>
+    <circle cx="140" cy="95" r="4"/>
+    <circle cx="70" cy="75" r="3.2"/>
+    <circle cx="150" cy="75" r="3.2"/>
+    <circle cx="110" cy="70" r="5"/>
+    <circle cx="45" cy="55" r="2.4"/>
+    <circle cx="175" cy="60" r="2.4"/>
+  </g>
+
+  <!-- dois irmãos, de mãos dadas, olhando a árvore -->
+  <g fill="#4A2E3A" opacity="0.85">
+    <path d="M96 200 q0 -22 8 -22 t8 22 z"/>
+    <circle cx="104" cy="170" r="7"/>
+    <path d="M112 200 q0 -20 7 -20 t7 20 z"/>
+    <circle cx="119" cy="172" r="6"/>
+  </g>
+</svg>
