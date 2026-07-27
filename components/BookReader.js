@@ -6,17 +6,22 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-function PageContent({ title, subtitle, cover, pages, page }) {
+function PageContent({ title, subtitle, cover, coverAspect, pages, page }) {
   if (page === 0) {
+    const isPortrait = coverAspect === "portrait";
     return (
       <>
         {cover && (
-          <div className="relative aspect-[3/2] w-full max-w-sm overflow-hidden rounded-2xl shadow-lg ring-1 ring-blush">
+          <div
+            className={`relative w-full overflow-hidden rounded-2xl shadow-lg ring-1 ring-blush ${
+              isPortrait ? "aspect-[2/3] max-w-[13rem]" : "aspect-[3/2] max-w-sm"
+            }`}
+          >
             <Image
               src={cover}
               alt={title}
               fill
-              sizes="(max-width: 640px) 90vw, 400px"
+              sizes={isPortrait ? "220px" : "(max-width: 640px) 90vw, 400px"}
               className="object-cover"
               priority
             />
@@ -48,6 +53,7 @@ export default function BookReader({
   title,
   subtitle,
   cover,
+  coverAspect,
   pages,
   backHref = "/",
   backLabel = "← voltar",
@@ -112,6 +118,7 @@ export default function BookReader({
             title={title}
             subtitle={subtitle}
             cover={cover}
+            coverAspect={coverAspect}
             pages={pages}
             page={page}
           />
@@ -139,6 +146,7 @@ export default function BookReader({
                 title={title}
                 subtitle={subtitle}
                 cover={cover}
+                coverAspect={coverAspect}
                 pages={pages}
                 page={flip.from}
               />

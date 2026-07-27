@@ -16,6 +16,7 @@ export default async function StoryPage({ params }) {
       title={story.title}
       subtitle={story.subtitle}
       cover={story.cover}
+      coverAspect={story.coverAspect}
       pages={story.pages}
       backHref="/"
       backLabel="← voltar para a árvore"
