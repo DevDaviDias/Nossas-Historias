@@ -1,0 +1,36 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="sky8" cx="50%" cy="25%" r="85%">
+      <stop offset="0%" stop-color="#FFF3E9"/>
+      <stop offset="100%" stop-color="#B5708C"/>
+    </radialGradient>
+  </defs>
+  <circle cx="110" cy="110" r="108" fill="url(#sky8)"/>
+
+  <!-- nuvens -->
+  <g fill="#FFFFFF" opacity="0.9">
+    <ellipse cx="45" cy="170" rx="32" ry="12"/>
+    <ellipse cx="175" cy="175" rx="30" ry="11"/>
+  </g>
+
+  <!-- estante de livros -->
+  <g stroke="#4A2E3A" stroke-width="1" opacity="0.85">
+    <rect x="65" y="80" width="90" height="70" fill="none" stroke-width="2"/>
+    <line x1="65" y1="103" x2="155" y2="103" stroke-width="2"/>
+    <line x1="65" y1="126" x2="155" y2="126" stroke-width="2"/>
+    <rect x="70" y="83" width="8" height="18" fill="#F7CE7A"/>
+    <rect x="80" y="83" width="8" height="18" fill="#B5708C"/>
+    <rect x="90" y="83" width="8" height="18" fill="#F58FB2"/>
+    <rect x="100" y="83" width="8" height="18" fill="#F7CE7A"/>
+    <rect x="70" y="106" width="8" height="18" fill="#F58FB2"/>
+    <rect x="80" y="106" width="8" height="18" fill="#F7CE7A"/>
+    <rect x="90" y="106" width="8" height="18" fill="#B5708C"/>
+  </g>
+
+  <!-- pequenas luzes saindo de um livro -->
+  <g fill="#F7CE7A">
+    <circle cx="130" cy="60" r="2"/>
+    <circle cx="150" cy="45" r="1.4"/>
+    <circle cx="115" cy="50" r="1.2"/>
+  </g>
+</svg>

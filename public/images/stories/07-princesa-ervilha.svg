@@ -1,0 +1,31 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="sky7" cx="50%" cy="25%" r="85%">
+      <stop offset="0%" stop-color="#FFEAF1"/>
+      <stop offset="100%" stop-color="#B5708C"/>
+    </radialGradient>
+  </defs>
+  <circle cx="110" cy="110" r="108" fill="url(#sky7)"/>
+
+  <!-- lua -->
+  <circle cx="165" cy="50" r="16" fill="#F7CE7A"/>
+  <circle cx="171" cy="45" r="13" fill="#FFEAF1"/>
+
+  <!-- castelo -->
+  <g fill="#4A2E3A" opacity="0.8">
+    <rect x="55" y="95" width="110" height="45" />
+    <rect x="60" y="70" width="16" height="30" />
+    <rect x="144" y="70" width="16" height="30" />
+    <polygon points="68,70 68,55 76,63" />
+    <polygon points="144,70 144,55 152,63" />
+    <rect x="102" y="80" width="16" height="20" />
+    <polygon points="102,80 110,68 118,80" />
+  </g>
+
+  <!-- colchões empilhados -->
+  <g stroke="#F7CE7A" stroke-width="1.2" fill="#FFF6F8">
+    <rect x="80" y="160" width="60" height="8" rx="3"/>
+    <rect x="83" y="152" width="54" height="8" rx="3"/>
+    <rect x="86" y="144" width="48" height="8" rx="3"/>
+  </g>
+</svg>
