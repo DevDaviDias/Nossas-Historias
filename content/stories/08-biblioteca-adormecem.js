@@ -2,7 +2,7 @@ const story = {
   slug: "biblioteca-adormecem",
   title: "A Biblioteca das Histórias que Adormecem",
   subtitle: "Uma história para dormir",
-  cover: "/images/stories/08-biblioteca-adormecem.svg",
+  cover: "/images/stories/08-biblioteca-adormecem.png",
   pages: [
     [
       "Existe um lugar que quase ninguém conhece.",

@@ -2,7 +2,7 @@ const story = {
   slug: "princesa-ervilha",
   title: "A Princesa, a Ervilha e a Noite Mais Tranquila",
   subtitle: "Uma história para dormir",
-  cover: "/images/stories/07-princesa-ervilha.svg",
+  cover: "/images/stories/07-princesa-ervilha.png",
   pages: [
     [
       "Era uma vez, muito longe daqui, um reino onde as noites eram tão silenciosas que era possível ouvir as flores se abrindo sob a luz da lua.",
