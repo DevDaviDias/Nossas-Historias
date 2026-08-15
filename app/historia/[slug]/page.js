@@ -18,6 +18,7 @@ export default async function StoryPage({ params }) {
       cover={story.cover}
       coverAspect={story.coverAspect}
       pages={story.pages}
+      audio={story.audio}
       backHref="/"
       backLabel="← voltar para a árvore"
     />

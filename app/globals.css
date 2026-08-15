@@ -13,6 +13,14 @@ body {
     radial-gradient(circle at 15% 20%, rgba(247, 206, 122, 0.18), transparent 40%),
     radial-gradient(circle at 85% 10%, rgba(245, 143, 178, 0.18), transparent 45%),
     linear-gradient(180deg, #fff6f8 0%, #ffeef3 100%);
+  transition: background 0.3s ease;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(247, 206, 122, 0.10), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(245, 143, 178, 0.08), transparent 45%),
+    linear-gradient(180deg, #1b1530 0%, #120e22 100%);
 }
 
 /* respeita quem prefere menos movimento */

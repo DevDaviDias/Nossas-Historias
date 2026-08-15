@@ -5,8 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import AudioNarration from "@/components/AudioNarration";
 
-function PageContent({ title, subtitle, cover, coverAspect, pages, page }) {
+function PageContent({ title, subtitle, cover, coverAspect, pages, page, audio }) {
   if (page === 0) {
     const isPortrait = coverAspect === "portrait";
     return (
@@ -27,10 +28,11 @@ function PageContent({ title, subtitle, cover, coverAspect, pages, page }) {
             />
           </div>
         )}
-        <h1 className="font-display text-2xl italic text-mauve sm:text-3xl">
+        <h1 className="font-display text-2xl italic text-mauve sm:text-3xl dark:text-cream">
           {title}
         </h1>
-        {subtitle && <p className="text-sm text-plum/60">{subtitle}</p>}
+        {subtitle && <p className="text-sm text-plum/60 dark:text-cream/50">{subtitle}</p>}
+        {audio && <AudioNarration src={audio} />}
       </>
     );
   }
@@ -40,7 +42,7 @@ function PageContent({ title, subtitle, cover, coverAspect, pages, page }) {
       {pages[page - 1].map((line, i) => (
         <p
           key={i}
-          className="font-display text-lg leading-relaxed text-plum sm:text-xl"
+          className="font-display text-lg leading-relaxed text-plum sm:text-xl dark:text-cream/90"
         >
           {line}
         </p>
@@ -55,6 +57,7 @@ export default function BookReader({
   cover,
   coverAspect,
   pages,
+  audio,
   backHref = "/",
   backLabel = "← voltar",
   prevBoundary, // { href, label } - navegação para o capítulo/história anterior
@@ -104,16 +107,16 @@ export default function BookReader({
     <div className="mx-auto flex min-h-screen max-w-2xl flex-col px-5 py-8">
       <Link
         href={backHref}
-        className="mb-4 w-fit text-sm text-mauve underline-offset-4 hover:underline"
+        className="mb-4 w-fit text-sm text-mauve underline-offset-4 hover:underline dark:text-blush"
       >
         {backLabel}
       </Link>
 
       <div
-        className="relative flex-1 overflow-hidden rounded-3xl bg-white/70 p-1 shadow-xl shadow-rose/10 ring-1 ring-blush"
+        className="relative flex-1 overflow-hidden rounded-3xl bg-white/70 p-1 shadow-xl shadow-rose/10 ring-1 ring-blush dark:bg-nightCard/60 dark:shadow-black/30 dark:ring-nightBlush"
         style={{ perspective: 1600 }}
       >
-        <div className="flex h-full min-h-[60vh] flex-col items-center justify-center gap-5 rounded-[1.4rem] bg-cream p-8 text-center">
+        <div className="flex h-full min-h-[60vh] flex-col items-center justify-center gap-5 rounded-[1.4rem] bg-cream p-8 text-center dark:bg-nightCard">
           <PageContent
             title={title}
             subtitle={subtitle}
@@ -121,6 +124,7 @@ export default function BookReader({
             coverAspect={coverAspect}
             pages={pages}
             page={page}
+            audio={audio}
           />
         </div>
 
@@ -140,7 +144,7 @@ export default function BookReader({
                 backfaceVisibility: "hidden",
                 transformStyle: "preserve-3d",
               }}
-              className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 rounded-[1.4rem] bg-cream p-8 text-center shadow-2xl"
+              className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 rounded-[1.4rem] bg-cream p-8 text-center shadow-2xl dark:bg-nightCard"
             >
               <PageContent
                 title={title}
@@ -184,7 +188,7 @@ export default function BookReader({
         >
           {atStart && prevBoundary ? prevBoundary.label : "← anterior"}
         </button>
-        <span className="shrink-0 text-xs text-plum/50">
+        <span className="shrink-0 text-xs text-plum/50 dark:text-cream/40">
           {page + 1} / {totalPages}
         </span>
         <button

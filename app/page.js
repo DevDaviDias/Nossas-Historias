@@ -7,13 +7,13 @@ export default async function HomePage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-6 py-12">
-      <p className="mb-2 text-sm uppercase tracking-[0.3em] text-mauve">
+      <p className="mb-2 text-sm uppercase tracking-[0.3em] text-mauve dark:text-blush/70">
         para você
       </p>
-      <h1 className="text-center font-display text-3xl italic text-mauve sm:text-4xl">
+      <h1 className="text-center font-display text-3xl italic text-mauve sm:text-4xl dark:text-cream">
         Nosso Livro de Histórias
       </h1>
-      <p className="mt-3 max-w-sm text-center text-sm text-plum/70">
+      <p className="mt-3 max-w-sm text-center text-sm text-plum/70 dark:text-cream/60">
         Cada estrela é uma história esperando para ser lida. Toque em uma
         delas.
       </p>
@@ -23,7 +23,7 @@ export default async function HomePage() {
       </div>
 
       {stories.length === 0 && (
-        <p className="mt-6 text-sm text-plum/60">
+        <p className="mt-6 text-sm text-plum/60 dark:text-cream/50">
           Nenhuma história ainda — adicione um arquivo em{" "}
           <code>content/stories</code>.
         </p>
@@ -31,7 +31,7 @@ export default async function HomePage() {
 
       <Link
         href="/livros"
-        className="mt-12 text-sm text-mauve underline-offset-4 hover:underline"
+        className="mt-12 text-sm text-mauve underline-offset-4 hover:underline dark:text-blush"
       >
         📚 ver a estante de livros
       </Link>

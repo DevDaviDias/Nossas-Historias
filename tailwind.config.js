@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,jsx}",
     "./components/**/*.{js,jsx}",
@@ -13,6 +14,11 @@ module.exports = {
         plum: "#4A2E3A",      // texto escuro, contraste
         mauve: "#B5708C",     // títulos, subtítulos
         gold: "#F7CE7A",      // estrelas / detalhes dourados
+        // paleta do tema escuro — um "céu noturno" para combinar com a
+        // árvore de estrelas, mantendo o mesmo espírito rosa/dourado
+        night: "#1B1530",     // fundo principal no escuro
+        nightCard: "#251D40", // cartões / páginas do livro no escuro
+        nightBlush: "#3A2A4A",// bordas suaves no escuro
       },
       fontFamily: {
         display: ["var(--font-display)"],
