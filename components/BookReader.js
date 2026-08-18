@@ -39,14 +39,33 @@ function PageContent({ title, subtitle, cover, coverAspect, pages, page, audio }
 
   return (
     <div className="space-y-4">
-      {pages[page - 1].map((line, i) => (
-        <p
-          key={i}
-          className="font-display text-lg leading-relaxed text-plum sm:text-xl dark:text-cream/90"
-        >
-          {line}
-        </p>
-      ))}
+      {pages[page - 1].map((line, i) => {
+        if (line && typeof line === "object" && line.type === "image") {
+          return (
+            <div
+              key={i}
+              className="relative w-full overflow-hidden rounded-2xl shadow-lg ring-1 ring-blush"
+              style={{ aspectRatio: line.aspect || "3 / 2" }}
+            >
+              <Image
+                src={line.src}
+                alt={line.alt || title}
+                fill
+                sizes="(max-width: 640px) 90vw, 600px"
+                className="object-cover"
+              />
+            </div>
+          );
+        }
+        return (
+          <p
+            key={i}
+            className="font-display text-lg leading-relaxed text-plum sm:text-xl dark:text-cream/90"
+          >
+            {line}
+          </p>
+        );
+      })}
     </div>
   );
 }
