@@ -25,18 +25,20 @@ const BRANCH_SPOTS = [
   { x: 15, y: 46 },
   { x: 85, y: 46 },
   // --- galhos extras, adicionados conforme o livro cresce ---
-  { x: 50, y: 6 },
-  { x: 25, y: 10 },
-  { x: 75, y: 10 },
-  { x: 10, y: 24 },
-  { x: 90, y: 24 },
-  { x: 44, y: 18 },
-  { x: 56, y: 18 },
-  { x: 8, y: 38 },
-  { x: 92, y: 38 },
-  { x: 36, y: 50 },
-  { x: 64, y: 50 },
-  { x: 5, y: 52 },
+  // Ficam encaixados entre os galhos originais, dentro da mesma copa,
+  // em vez de subir sozinhos acima da árvore.
+  { x: 42, y: 14 },
+  { x: 58, y: 14 },
+  { x: 26, y: 24 },
+  { x: 74, y: 24 },
+  { x: 46, y: 22 },
+  { x: 54, y: 22 },
+  { x: 18, y: 36 },
+  { x: 82, y: 36 },
+  { x: 36, y: 38 },
+  { x: 64, y: 38 },
+  { x: 25, y: 50 },
+  { x: 75, y: 50 },
 ];
 
 // Pontinhos de luz espalhados pelo "céu" atrás da árvore, só para dar
